@@ -1,0 +1,73 @@
+﻿@page
+@model DetailedModel
+@{
+	ViewData["Title"] = @Model.Cloth.Name;
+}
+<!--<h1>@ViewData["Title"]</h1> -->
+@if (Model.Cloth == null)
+{
+	<br />
+	<br />
+	<br />
+	<center>
+		<h1>
+			Данный товар не найдет
+		</h1>
+	</center>
+}
+else
+{
+	<div class="row">
+		<div class="pictureColumn">
+			@foreach(var image in @Model.Cloth.Images)
+			{
+				<img src="@image.Url" class="picColumn__image" />
+			}
+		</div>
+		<div class="itemColumn">
+			<div class="itemName">@Model.Cloth.Name</div>
+			<div class="itemPrice"><strong>@Model.Cloth.Price</strong></div>
+			<div class="itemDescription">@Html.Raw(Model.Cloth.Description)</div>
+			<div class="itemSize">Выберите размер:</div>
+			<div class="itemSizeList">
+				<div onclick=sizeChoose(0) id="size-s" class="itemSizeListItem active"><div>S</div></div>
+				<div onclick=sizeChoose(1) id="size-m" class="itemSizeListItem"><div>M</div></div>
+				<div onclick=sizeChoose(2) id="size-l" class="itemSizeListItem"><div>L</div></div>
+			</div>
+			<button class="itemButtonBuy"><div>Купить</div></button>
+			<div class="itemReview">Отзывы</div>
+			<form class="itemReviewForm" method="post">
+				<input type="hidden" name="id" value="@Model.Cloth.Id" required/>
+				<input name="name" class="itemInputName" placeholder="Ваше имя" required/>
+				<textarea name="desc" class="itemInputDesc" placeholder="Ваш отзыв" ></textarea>
+				<label>Оценка: <select name="rating" class="itemInputRating">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+				</select></label>
+				<button asp-page-handler="Auth" id = "submit" class="itemButtonReview">Оставить отзыв</button>
+			</form>
+			<div class="reviewColumn">
+				@if(Model.Cloth.Reviews.FirstOrDefault() == null)
+				{
+					<h1>Отзывов на данный товар нет, будьте первыми!</h1>
+				}
+				else
+				{
+					@foreach(var review in Model.Cloth.Reviews)
+					{
+						<div class="reviewItem">
+							<div class="reviewItemHead">
+								<div class="reviewItemName">@review.Name</div>
+								<div class="reviewItemRating">@review.Grade/5</div>
+							</div>
+							<div class="reviewItemDesc">@review.Description</div>
+						</div>
+					}
+				}
+			</div>
+		</div>
+	</div>
+}

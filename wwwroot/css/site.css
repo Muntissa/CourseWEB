@@ -1,0 +1,524 @@
+@font-face {
+    font-family: "Montserrat";
+    font-weight: 700;
+    src: url("../fonts/Montserrat-Bold.ttf");
+}
+
+@font-face {
+    font-family: "Gilroy";
+    font-weight: 700;
+    src: url("../fonts/gilroy-bold.ttf");
+}
+
+@font-face {
+    font-family: "Philosopher";
+    font-weight: 700;
+    src: url("../fonts/philosopher-bold.ttf");
+}
+
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin: 0;
+    background: #f8f8fa;
+}
+
+.leftimg {
+    float: left;
+    margin: 7px 150px 7px 0;
+    
+}
+
+.picColumn {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+.picRow {
+    display: flex;
+    flex-direction: row;
+}
+
+.picRow--item {
+    cursor: pointer;
+    position: relative;
+}
+
+.picRow--item_image {
+    width: 25vw;
+    height: 35.2vw;
+}
+
+.picRow--item_desc {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.picRow--item.hidden .picRow--item_desc {
+    display: none;
+}
+
+.picRow--item.hidden .picRow--item_fon {
+    display: none;
+}
+
+a:active, /* активная/посещенная ссылка */
+a:hover, /* при наведении */
+a {
+    text-decoration: none;
+    color: lightgray;
+}
+
+.picRow--item_fon {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    opacity: 0.7;
+    animation-duration: 0.3s;
+    animation-name: darkness;
+}
+
+.picRow--item:not(.hidden) .picRow--item_image {
+    transform: scale(1.1);
+    animation-duration: 0.3s;
+    animation-name: rezising;
+}
+
+.picRow--item.anim .picRow--item_image {
+    transform: scale(1.0);
+    animation-duration: 0.3s;
+    animation-name: rezisingRev;
+}
+
+
+@keyframes darkness {
+    from {
+        Opacity: 0;
+    }
+
+    to {
+        Opacity: 0.7;
+    }
+}
+
+@keyframes rezising {
+    from {
+        transform: scale(1.0);
+    }
+
+    to {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes rezisingRev {
+    from {
+        transform: scale(1.1);
+    }
+
+    to {
+        transform: scale(1.0);
+    }
+}
+
+.categoryRow {
+    display: flex;
+    margin: 20px 20px 40px 20px;
+    justify-content: space-between;
+    border-bottom: 5px double black;
+    
+}
+
+.categoryItem {
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.categoryItem.active .categoryUnderline {
+    width: 100%;
+    height: 2px;
+    animation: none!important;
+}
+
+.categoryText {
+    color: black;
+    font-family: 'Philosopher';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    letter-spacing: 0.1em;
+}
+
+.categoryUnderline {
+    height: 2px;
+    background: black;
+    width: 0%;
+}
+
+.categoryItem.anim:not(.active) .categoryUnderline {
+    width: 100%;
+    height: 2px;
+    background: black;
+    animation-duration: 0.5s;
+    animation-name: openUnderline;
+}
+
+.categoryItem.hidden:not(.active) .categoryUnderline {
+    width: 0%;
+    animation-duration: 0.5s;
+    animation-name: closeUnderline;
+}
+
+@keyframes openUnderline {
+    from {
+        width: 0%;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes closeUnderline {
+    from {
+        width: 100%;
+    }
+
+    to {
+        width: 0%;
+    }
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.pictureColumn {
+    width: 30vw;
+    height: 90vh;
+    margin-left: 5vw;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+
+.picColumn__image {
+    width: 30vw;
+    height: 42.25vw;
+}
+
+.itemColumn {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10vw;
+    width: 40vw;
+}
+
+.itemName {
+    font-size: 32px;
+}
+
+.itemPrice {
+    font-size: 24px;
+}
+
+.itemDescription {
+
+}
+
+.itemSize {
+    font-size: 24px;
+}
+
+.itemButtonBuy {
+    width: 250px;
+    border-radius: 10px;
+    height: 60px;
+    background: #1F1E1E;
+    text-align: center;
+    align-items: center;
+    color: white;
+    font-size: 24px;
+}
+
+.itemSizeList {
+    display: flex;
+    flex-direction: row;
+    height: 40px;
+    margin: 20px 0 20px 0;
+}
+
+.itemSizeListItem {
+    width: 40px;
+    height: 40px;
+    border: 1px black solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.itemSizeListItem:hover {
+    color: white;
+    background: black;
+}
+
+.itemSizeListItem.active {
+    color: white;
+    background: black;
+}
+
+.itemSizeListItem:not(:first-child) {
+    margin-left: 20px
+}
+
+.itemReview {
+    margin: 20px 0 20px 0;
+    font-size: 24px;
+}
+
+.itemInputName {
+    border-radius: 5px;
+    border: 3px black solid;
+    width: 200px;
+    height: 40px;
+}
+
+.itemInputDesc {
+    border-radius: 5px;
+    border: 3px black solid;
+    width: 400px;
+    margin-top: 10px;
+}
+
+.itemInputRating {
+    border-radius: 5px;
+    border: 3px black solid;
+    width: 50px;
+    margin-top: 10px;
+}
+
+.itemReviewForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.itemButtonReview {
+    width: 250px;
+    border-radius: 10px;
+    height: 60px;
+    background: #1F1E1E;
+    text-align: center;
+    align-items: center;
+    color: white;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.reviewItem {
+    border: 2px black solid;
+    border-radius: 20px;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+.reviewItemHead {
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between
+}
+
+.reviewColumn {
+    overflow-y: scroll;
+    height: 30vh;
+}
+
+.newsItem {
+    cursor: pointer;
+    width: 25vw;
+    border-radius: 10px;
+    box-shadow: 0px 1.6px 3.6px rgb(0 0 0 / 25%), 0px 0px 2.9px rgb(0 0 0 / 21%);
+    margin-left: 2vw;
+}
+
+.newsItem:hover .newsItemName {
+    text-decoration: underline;
+}
+
+.newsItemImage {
+    width: 25vw;
+    height: 15vw;
+    border-radius: 10px 10px 0 0;
+}
+
+.newsItemName {
+   font-size: 24px;
+   padding: 10px;
+}
+
+.container {
+    display: block !important;
+}
+
+.header-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.news-card {
+    position: relative;
+    margin-top: 30px;
+    max-width: 304px;
+    box-shadow: 0 0 5px 2px #979797;
+    padding-bottom: 20px;
+}
+
+.news-card-img {
+    width: 304px;
+    height: 356px;
+}
+
+.news-card-text-wrapper {
+    padding: 0 10px;
+}
+
+.news-card-title {
+    margin-top: 15px;
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 140%;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #333333;
+}
+
+.description-news-card {
+    margin-top: 15px;
+    margin-bottom: 20px;
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 150%;
+    color: #333333;
+}
+
+.read-more-news-card-link {
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+    border-bottom: 1px solid #333333;
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 150%;
+    color: #201f1f;
+}
+
+.read-more-news-card-link:hover {
+    border-bottom: 1px dashed #333333;
+}
+
+.logo-img {
+    width: 150px;
+    height: auto;
+}
+.header-logo {
+    margin: 0 40px;
+}
+
+.header-text {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 0.03em;
+    color: #212121;
+}
+
+.news-detailed-wrapper {
+    margin-top: 50px;
+}
+
+.news-detailed-title {
+    font-family: 'Noto Serif';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 41px;
+    text-transform: uppercase;
+    color: #333333;
+    margin-bottom: 20px;
+}
+
+.news-detailed-img {
+    height: 650px;
+    width: 480px;
+    float: left;
+    margin-right: 15px;
+}
+
+
+.news-detailed-date {
+    display: block;
+    font-family: 'Noto Serif';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 41px;
+    text-transform: uppercase;
+    color: #333333;
+}
+
+.news-detailed-description {
+    margin-bottom: 20px;
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 150%;
+    color: #333333;
+}
+
+.news-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}

@@ -1,0 +1,20 @@
+﻿@page
+@model NewsModel
+@{
+    ViewData["Title"] = "Новости";
+}
+<div class="container">
+    <div class="news-container">
+    @foreach(var news in Model.LoadNews())
+    {
+        <div class="news-card">
+            <img src=@news.Images.First().Url class="news-card-img">
+            <div class="news-card-text-wrapper">
+                <h4 class="news-card-title">@news.Name</h4>
+                <p class="description-news-card">@news.ShortDecription</p>
+                <a href="./NewsDetailed?id=@news.Id" class="read-more-news-card-link">Читать далее</a>
+            </div>
+        </div>
+    }
+    </div>
+</div>

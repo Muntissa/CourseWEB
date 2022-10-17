@@ -1,0 +1,39 @@
+﻿@page
+@using static System.Net.WebRequestMethods
+@model IndexModel
+@{
+    ViewData["Title"] = "Catalog";
+}
+    
+<div class="categoryRow">
+@foreach (var category in Model.LoadCategory())
+    {
+        <a href="./?category_id=@category.Id"><div id="category-@Model.Counter2" class="categoryItem @Html.Raw(Model.CategoryId == category.Id ? "active" : "")" onclick="categoryOpen(@Model.Counter2)"  onmouseenter="categoryShow(@Model.Counter2)" onmouseleave="categoryClose(@Model.Counter2)">
+            <div class="categoryText">@category.Name</div>
+            <div class="categoryUnderline"></div>
+        </div></a>
+
+        Model.Counter2 = Model.Counter2 + 1;
+    }
+</div>
+
+<div class="picColumn">
+
+
+@Html.Raw("<div class=\"picRow\">")
+@foreach (var cloth in Model.LoadClothes(7))
+{
+            <a href="./Detailed?id=@cloth.Id"><div id="pic-@Model.Counter" class="picRow--item hidden" onmouseenter="textShow(@Model.Counter)" onmouseleave="textClose(@Model.Counter)">
+            <img src="@cloth.Images.First().Url" class="picRow--item_image"/>
+            <div class="picRow--item_desc">@cloth.Name</div>
+            <div class="picRow--item_fon"></div>
+            </div></a>
+
+    if (Model.Counter % 4 == 0)
+    {
+        @Html.Raw("</div> <div class=\"picRow\">")
+    }
+    Model.Counter = Model.Counter + 1;
+}
+@Html.Raw("</div>")
+</div>

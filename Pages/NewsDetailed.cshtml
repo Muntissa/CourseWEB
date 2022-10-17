@@ -1,0 +1,12 @@
+﻿@page
+@model CourseWEB.Pages.NewsDetailedModel
+@{
+    <div class="container">
+        <div class="news-detailed-wrapper">
+            <h2 class="news-detailed-title">@Model.news.Name</h2>
+            <span class="news-detailed-date">@Model.news.Date</span>
+            <img src=@Model.news.Images.ElementAt(1).Url class="news-detailed-img">
+            <p class="news-detailed-description">@Model.news.Description</p>
+        </div>
+    </div>
+}
